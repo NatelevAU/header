@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "A component to easily create customisable headers, footers, and side bars.",
   "main": "build/index.js",
+  "module": "build/index.js",
+  "exports": "./build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc",
