@@ -1,6 +1,6 @@
 {
   "name": "@natelev/header",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A component to easily create customisable headers, footers, and side bars.",
   "main": "build/index.js",
   "module": "build/index.js",
