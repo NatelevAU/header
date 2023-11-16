@@ -84,27 +84,30 @@ const Header = (_a) => {
     // BUT also has a bug that causes the scrollbar to remain gone when navigating to a new page
     isSideHeader &&
         (0, react_1.useEffect)(() => {
-            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-            const hasScrollbar = scrollbarWidth > 0;
-            // Hide scrollbar when menu is open
-            if (anchorElNav) {
-                document.body.style.overflow = 'hidden';
-                if (hasScrollbar) {
-                    document.body.style.paddingRight = `${scrollbarWidth}px`;
+            const setScrollBar = () => {
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                const hasScrollbar = scrollbarWidth > 0;
+                // Hide scrollbar when menu is open
+                if (anchorElNav) {
+                    document.body.style.overflow = 'hidden';
+                    if (hasScrollbar) {
+                        document.body.style.paddingRight = `${scrollbarWidth}px`;
+                    }
                 }
-            }
-            else {
-                // Restore default styles when menu is closed
-                document.body.style.overflow = '';
-                document.body.style.paddingRight = ''; // Reset to browser default
-            }
-            return () => {
-                // Reset styles when component unmounts
-                document.body.style.overflow = 'hidden';
-                if (hasScrollbar) {
-                    document.body.style.paddingRight = `${scrollbarWidth}px`;
+                else {
+                    // Restore default styles when menu is closed
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = ''; // Reset to browser default
                 }
+                return () => {
+                    // Reset styles when component unmounts
+                    document.body.style.overflow = 'hidden';
+                    if (hasScrollbar) {
+                        document.body.style.paddingRight = `${scrollbarWidth}px`;
+                    }
+                };
             };
+            setScrollBar();
         }, [anchorElNav]);
     (0, react_1.useEffect)(() => {
         if (isXsScreen && !isTopHeader) {
