@@ -15,5 +15,5 @@ interface HeaderProps extends AppBarProps {
     highlightTextColor?: string;
     children?: ReactNode;
 }
-declare const Header: React.FC<HeaderProps>;
+declare const Header: React.ForwardRefExoticComponent<Omit<HeaderProps, "ref"> & React.RefAttributes<HTMLDivElement>>;
 export default Header;

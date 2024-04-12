@@ -51,7 +51,7 @@ const transformOrigin = {
     vertical: 'top',
     horizontal: 'right',
 };
-const Header = (_a) => {
+const Header = react_1.default.forwardRef((_a, ref) => {
     var { headerType, logo: LogoComponent, firstElements = [], middleElements = [], lastElements = [], headerWidth = 15, topBackground, background, backgroundColor = 'white', textColor = 'primary.main', highlightBackgroundColor = 'primary.main', highlightTextColor = 'white', children } = _a, rest = __rest(_a, ["headerType", "logo", "firstElements", "middleElements", "lastElements", "headerWidth", "topBackground", "background", "backgroundColor", "textColor", "highlightBackgroundColor", "highlightTextColor", "children"]);
     const theme = (0, material_1.useTheme)();
     const localTheme = (0, material_1.createTheme)({
@@ -81,7 +81,6 @@ const Header = (_a) => {
     const [isShrunk, setIsShrunk] = react_1.default.useState(isXsScreen);
     const location = (0, react_router_dom_1.useLocation)();
     // Required to fix a scrollbar bug that shifts side header
-    // BUT also has a bug that causes the scrollbar to remain gone when navigating to a new page
     isSideHeader &&
         (0, react_1.useEffect)(() => {
             const setScrollBar = () => {
@@ -117,6 +116,7 @@ const Header = (_a) => {
             setIsShrunk(false);
         }
     }, [location.pathname, isXsScreen]);
+    (0, react_1.useEffect)(() => { }, []);
     // Function to toggle the 'shrunk' state
     const toggleShrunk = () => {
         setIsShrunk(!isShrunk);
@@ -174,7 +174,7 @@ const Header = (_a) => {
         };
         return (0, jsx_runtime_1.jsx)(Element, Object.assign({}, extraProps), index);
     };
-    return ((0, jsx_runtime_1.jsxs)(material_1.AppBar, Object.assign({}, AppBarStyle, { children: [isSideHeader && ((0, jsx_runtime_1.jsxs)(material_1.Box, { sx: Object.assign({}, topBackgroundStyle), children: [!isShrunk && LogoComponent ? (0, jsx_runtime_1.jsx)(LogoComponent, {}) : null, (0, jsx_runtime_1.jsx)(material_1.IconButton, { "aria-label": "close", sx: {
+    return ((0, jsx_runtime_1.jsxs)(material_1.AppBar, Object.assign({ ref: ref }, AppBarStyle, { children: [isSideHeader && ((0, jsx_runtime_1.jsxs)(material_1.Box, { sx: Object.assign({}, topBackgroundStyle), children: [!isShrunk && LogoComponent ? (0, jsx_runtime_1.jsx)(LogoComponent, {}) : null, (0, jsx_runtime_1.jsx)(material_1.IconButton, { "aria-label": "close", sx: {
                             color: 'white',
                         }, onClick: toggleShrunk, children: isShrunk ? (0, jsx_runtime_1.jsx)(Menu_1.default, {}) : (0, jsx_runtime_1.jsx)(Close_1.default, {}) })] })), (0, jsx_runtime_1.jsxs)(material_1.Container, { maxWidth: "xl", sx: Object.assign(Object.assign(Object.assign(Object.assign({ display: 'flex' }, (isTopHeader ? { flexDirection: 'row' } : {})), (isFooter ? { flexDirection: { xs: 'column', md: 'row' } } : {})), (isSideHeader
                     ? { flexDirection: 'column', height: '100vh', justifyContent: 'space-between' }
@@ -188,7 +188,9 @@ const Header = (_a) => {
                                         // left: '2%',
                                         // width: '100%',
                                     }
-                                    : {})), (isTopHeader ? { flexBasis: '33%', justifyContent: 'center' } : {})), (isFooter ? { flexDirection: 'column', flex: '0 1 auto', py: 1 } : {})), children: middleElements.map((Element, index) => addElementProps(Element, index)) }), (0, jsx_runtime_1.jsx)(material_1.Box, { sx: Object.assign(Object.assign(Object.assign({ width: isSideHeader ? '100%' : 'auto', display: { xs: isTopHeader ? 'none' : 'flex', md: 'flex' } }, (isSideHeader ? { flexDirection: 'column', justifyContent: 'flex-start' } : {})), (isTopHeader ? { flexBasis: '33%', justifyContent: 'flex-end' } : {})), (isFooter
+                                    : {})), (isTopHeader ? { flexBasis: '33%', justifyContent: 'center' } : {})), (isFooter ? { flexDirection: 'column', flex: '0 1 auto', py: 1 } : {})), children: middleElements.map((Element, index) => addElementProps(Element, index)) }), (0, jsx_runtime_1.jsx)(material_1.Box, { sx: Object.assign(Object.assign(Object.assign({ width: isSideHeader ? '100%' : 'auto', display: { xs: isTopHeader ? 'none' : 'flex', md: 'flex' } }, (isSideHeader
+                                    ? { flexDirection: 'column', justifyContent: 'flex-start' }
+                                    : {})), (isTopHeader ? { flexBasis: '33%', justifyContent: 'flex-end' } : {})), (isFooter
                                     ? {
                                         flexDirection: 'column',
                                         flex: 1,
@@ -210,5 +212,5 @@ const Header = (_a) => {
                                     justifyContent: 'center',
                                     marginLeft: '-48px',
                                 }, children: (0, jsx_runtime_1.jsx)(LogoComponent, {}) })), (0, jsx_runtime_1.jsx)(material_1.ThemeProvider, { theme: localTheme, children: (0, jsx_runtime_1.jsx)(material_1.Menu, { id: "menu-appbar", anchorEl: anchorElNav, anchorOrigin: anchorOrigin, keepMounted: true, transformOrigin: transformOrigin, open: Boolean(anchorElNav), onClose: handleCloseNavMenu, children: allElements.map((Element, index) => ((0, jsx_runtime_1.jsx)(material_1.MenuItem, { onClick: handleCloseNavMenu, sx: { mx: 0, my: 0, px: 0, py: 0 }, children: addElementPropsMobile(Element, index) }, index))) }) })] })] })] })));
-};
+});
 exports.default = Header;
